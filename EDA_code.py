@@ -3,6 +3,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import warnings
+import os
+
+# Create images folder if it doesn't exist
+os.makedirs("images", exist_ok=True)
 
 # Ignore warnings
 warnings.filterwarnings('ignore')
@@ -12,8 +16,8 @@ sns.set_theme(style='whitegrid', palette='muted')
 
 print("Libraries loaded successfully!")
 
-# Load dataset
-df = pd.read_csv('netflix_titles.csv')
+# Load cleaned dataset
+df = pd.read_csv('netflix_titles_cleaned.csv')
 
 print(f"\nDataset loaded: {df.shape[0]} rows, {df.shape[1]} columns")
 
@@ -41,9 +45,13 @@ missing_df = pd.DataFrame({
 
 print(missing_df[missing_df['Missing Count'] > 0])
 
+# Duplicate records
+print("\n=== Duplicate Records ===")
+print(f"Duplicates: {df.duplicated().sum()}")
+
 # Summary statistics
 print("\n=== Summary Statistics ===")
-print(df.describe())
+print(df.describe(include='all'))
 
 # Content type split
 print("\n=== Content Type Split ===")
@@ -61,8 +69,13 @@ print(df['rating'].value_counts().head(5))
 print("\n=== Release Year Statistics ===")
 print(df['release_year'].describe())
 
+# ==========================
 # Visualization
+# ==========================
+
 yearly = df.groupby(['release_year', 'type']).size().unstack(fill_value=0)
+
+# Filter years from 2000 onwards
 yearly = yearly[yearly.index >= 2000]
 
 fig, ax = plt.subplots(figsize=(12, 5))
@@ -81,6 +94,14 @@ ax.legend(title='Type')
 plt.xticks(rotation=45)
 plt.tight_layout()
 
+# Save chart
+plt.savefig(
+    'images/01_content_by_release_year.png',
+    dpi=150,
+    bbox_inches='tight'
+)
+
 plt.show()
 
-print("\nWeek 1 completed successfully!")
+print("\nExploratory Data Analysis completed successfully!")
+print("Chart saved to: images/01_content_by_release_year.png")
