@@ -16,12 +16,12 @@ sns.set_theme(style='whitegrid', palette='muted')
 
 print("Libraries loaded successfully!")
 
-# Load cleaned dataset
+# Load CLEANED dataset
 df = pd.read_csv('netflix_titles_cleaned.csv')
 
 print(f"\nDataset loaded: {df.shape[0]} rows, {df.shape[1]} columns")
 
-# Display first 3 rows
+# First 3 rows
 print("\n=== First 3 Rows ===")
 print(df.head(3))
 
@@ -43,7 +43,8 @@ missing_df = pd.DataFrame({
     'Missing Percentage': missing_pct
 })
 
-print(missing_df[missing_df['Missing Count'] > 0])
+missing_df = missing_df[missing_df['Missing Count'] > 0]
+print(missing_df.sort_values(by='Missing Count', ascending=False))
 
 # Duplicate records
 print("\n=== Duplicate Records ===")
@@ -53,7 +54,7 @@ print(f"Duplicates: {df.duplicated().sum()}")
 print("\n=== Summary Statistics ===")
 print(df.describe(include='all'))
 
-# Content type split
+# Content type distribution
 print("\n=== Content Type Split ===")
 print(df['type'].value_counts())
 
@@ -69,16 +70,16 @@ print(df['rating'].value_counts().head(5))
 print("\n=== Release Year Statistics ===")
 print(df['release_year'].describe())
 
-# ==========================
-# Visualization
-# ==========================
+# ==================================================
+# Visualization: Netflix Content by Release Year
+# ==================================================
 
 yearly = df.groupby(['release_year', 'type']).size().unstack(fill_value=0)
 
 # Filter years from 2000 onwards
 yearly = yearly[yearly.index >= 2000]
 
-fig, ax = plt.subplots(figsize=(12, 5))
+fig, ax = plt.subplots(figsize=(12, 6))
 
 yearly.plot(
     kind='bar',
@@ -96,12 +97,12 @@ plt.tight_layout()
 
 # Save chart
 plt.savefig(
-    'images/01_content_by_release_year.png',
+    'images/01_content_by_year.png',
     dpi=150,
     bbox_inches='tight'
 )
 
 plt.show()
 
-print("\nExploratory Data Analysis completed successfully!")
-print("Chart saved to: images/01_content_by_release_year.png")
+print("\nEDA completed successfully!")
+print("Chart saved to: images/01_content_by_year.png")
