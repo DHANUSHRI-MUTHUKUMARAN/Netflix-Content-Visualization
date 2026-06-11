@@ -1,105 +1,17 @@
-# Netflix Content Visualization
+# Netflix Content Visualization & Analysis
 
 ## Project Overview
 
-This project performs data cleaning, exploratory data analysis (EDA), and visualization on the Netflix Movies and TV Shows dataset. The goal is to uncover trends in Netflix's content library, including content growth, ratings distribution, genres, countries, and movie durations.
-
-The project is built using Python and popular data analysis libraries such as Pandas, Matplotlib, and Seaborn.
-
----
+This project performs Exploratory Data Analysis (EDA) on the Netflix Titles Dataset using Python. The goal is to analyze Netflix content trends, ratings, genres, countries, and growth over time through data cleaning and visualization techniques.
 
 ## Dataset
 
-**Dataset:** Netflix Movies and TV Shows
+* Source: Netflix Titles Dataset
+* Total Records: 8,807
+* Cleaned Records: 8,790
+* Features: 15 columns after cleaning
 
-The dataset contains information about over 8,800 Netflix titles, including:
-
-* Type (Movie / TV Show)
-* Title
-* Director
-* Cast
-* Country
-* Date Added
-* Release Year
-* Rating
-* Duration
-* Genre
-* Description
-
----
-
-## Project Structure
-
-| File                         | Description                                                  |
-| ---------------------------- | ------------------------------------------------------------ |
-| `netflix_titles.csv`         | Original Netflix dataset                                     |
-| `data_cleaning.py`           | Data preprocessing and cleaning                              |
-| `netflix_titles_cleaned.csv` | Cleaned dataset generated after preprocessing                |
-| `EDA_code.py`                | Exploratory Data Analysis                                    |
-| `visualization.py`           | Generates visualizations and saves them in the images folder |
-| `images/`                    | Stores all generated charts                                  |
-| `README.md`                  | Project documentation                                        |
-
----
-
-## Data Cleaning Tasks
-
-The following preprocessing steps were performed:
-
-* Handled missing values in:
-
-  * Director
-  * Cast
-  * Country
-  * Rating
-* Converted `date_added` to datetime format
-* Extracted:
-
-  * `year_added`
-  * `month_added`
-* Extracted numeric values from duration
-* Created separate duration statistics for:
-
-  * Movies (minutes)
-  * TV Shows (seasons)
-* Removed duplicate records
-* Exported cleaned dataset for analysis
-
----
-
-## Exploratory Data Analysis (EDA)
-
-The EDA phase includes:
-
-* Dataset shape and structure
-* Data types inspection
-* Missing value analysis
-* Duplicate record analysis
-* Summary statistics
-* Content type distribution
-* Top countries by content count
-* Most common content ratings
-* Release year analysis
-
----
-
-## Visualizations Generated
-
-The project generates the following visualizations:
-
-1. Movies vs TV Shows Distribution
-2. Top Countries by Number of Titles
-3. Ratings Distribution
-4. Content Added by Year
-5. Monthly Content Additions
-6. Movie Duration Distribution
-7. Top Genres on Netflix
-
-All charts are automatically saved in the `images/` folder.
-
----
-
-## Technologies Used
+## Tools & Technologies
 
 * Python
 * Pandas
@@ -107,56 +19,87 @@ All charts are automatically saved in the `images/` folder.
 * Matplotlib
 * Seaborn
 
----
+## Project Workflow
 
-## How to Run
+### Week 1 – Data Understanding
 
-### Install Required Libraries
+* Loaded dataset
+* Inspected structure and data types
+* Identified missing values
+* Generated summary statistics
 
-```bash
-pip install pandas numpy matplotlib seaborn
+### Week 2 – Data Cleaning
+
+* Handled missing values
+* Converted date columns
+* Extracted year and month information
+* Cleaned duration column
+* Created cleaned dataset
+
+### Week 3 – Data Visualization
+
+* Movies vs TV Shows distribution
+* Top producing countries
+* Ratings analysis
+* Content growth by year
+* Monthly content additions
+* Movie duration distribution
+* Genre analysis
+
+## Key Insights
+
+* Movies represent approximately 70% of Netflix content.
+* The United States is the largest content producer.
+* India is the second-largest contributor.
+* TV-MA is the most common content rating.
+* Netflix experienced rapid content growth between 2016 and 2019.
+* International Movies and Dramas are among the most popular genres.
+
+## Visualizations
+
+### Movies vs TV Shows
+
+![Movies vs TV Shows](images/movies_vs_tvshows.png)
+
+### Top Countries
+
+![Top Countries](images/top_countries.png)
+
+### Ratings Distribution
+
+![Ratings](images/ratings.png)
+
+### Content Added by Year
+
+![Yearly Growth](images/yearly_growth.png)
+
+### Content Added by Month
+
+![Monthly Additions](images/monthly_additions.png)
+
+### Movie Duration Distribution
+
+![Duration Distribution](images/duration_distribution.png)
+
+### Top Genres
+
+![Top Genres](images/top_genres.png)
+
+## Repository Structure
+
+```text
+Netflix-Content-Visualization/
+│
+├── netflix_titles.csv
+├── netflix_titles_cleaned.csv
+├── EDA_code.py
+├── data_cleaning.py
+├── visualization.py
+├── images/
+└── README.md
 ```
-
-### Run Data Cleaning
-
-```bash
-python3 data_cleaning.py
-```
-
-### Run Exploratory Data Analysis
-
-```bash
-python3 EDA_code.py
-```
-
-### Generate Visualizations
-
-```bash
-python3 visualization.py
-```
-
----
-
-## Sample Insights
-
-* Movies make up the majority of Netflix content.
-* The United States contributes the highest number of titles.
-* Content additions increased significantly after 2015.
-* Drama and International Movies are among the most popular genres.
-* Most movies have a duration close to 100 minutes.
-
----
 
 ## Author
 
-**Dhanushri Muthukumaran**
-
+Dhanushri Muthukumaran
 B.Tech Artificial Intelligence and Data Science
-
-St. Joseph's College of Engineering
-
----
-
-## License
-
-This project is created for educational and learning purposes.
